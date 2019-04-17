@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+crossorigin=""></script>
+<script src="leaflet-providers.js"></script>
+<style>#mapid { height: 100vh; }</style>
+</head>
+<body>
+    <div id="mapid">
+    </div>
+    <script>
+        var map = L.map('mapid').setView([51.510931, -0.11811132], 16);
+        const tiles = L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map);
+        //const tiles = L.tileLayer.provider('Stamen.Watercolor').addTo(map);
+        var somersethouse = L.marker([51.511119, -0.117116]).addTo(map);
+        //var pret = L.marker([51.511123, -0.119328]).addTo(map);
+        //var siamthai = L.marker([51.512063, -0.120157]).addTo(map);
+        
+        /*var coventGardenRadius = L.circle([51.512370, -0.124170], 
+        {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 300
+        }).addTo(map);*/
+        
+        /*navigator.geolocation.getCurrentPosition(locationUpdate, locationUpdateFail, 
+        {
+            enableHighAccuracy: false,
+            maximumAge: 30000,
+            timeout: 27000
+        });*/
+        
+        function locationUpdate(position) {
+            var me = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+            map.setView([position.coords.latitude, position.coords.longitude], 20);
+        }
+        function locationUpdateFail(error) 
+        {
+            console.log("location fail: ", error);
+        }
+    </script>
+
+</body>
+</html>
+ 
+ 
+
+
